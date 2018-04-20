@@ -7,7 +7,8 @@ using System.Web.Mvc;
 namespace WebTemp.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    [RequireHttps]
+    public class  HomeController : Controller
     {
         // GET: Home
         public ActionResult Index()

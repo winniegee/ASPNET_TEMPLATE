@@ -22,6 +22,7 @@ namespace WebTempp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.Configure(GlobalFilters.Filters);
             ConfigureAuth(app);
+           
         }
     }
 }

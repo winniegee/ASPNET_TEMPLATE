@@ -69,6 +69,44 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.white {
+    color: #000;
+    background-color: #fff;
+}
+.btn-facebook {
+    color: #ffffff;
+    -webkit-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #2b4b90;
+    *background-color: #133783;
+    background-image: -moz-linear-gradient(top, #3b5998, #133783);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3b5998), to(#133783));
+    background-image: -webkit-linear-gradient(top, #3b5998, #133783);
+    background-image: -o-linear-gradient(top, #3b5998, #133783);
+    background-image: linear-gradient(to bottom, #3b5998, #133783);
+    background-repeat: repeat-x;
+    border-color: #133783 #133783 #091b40;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998', endColorstr='#ff133783', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+    .btn-facebook:hover,
+    .btn-facebook:focus,
+    .btn-facebook:active,
+    .btn-facebook.active,
+    .btn-facebook.disabled,
+    .btn-facebook[disabled] {
+        color: #ffffff;
+        background-color: #133783 !important;
+        *background-color: #102e6d !important;
+    }
+
+    .btn-facebook:active,
+    .btn-facebook.active {
+        background-color: #0d2456 \9 !important;
+    }
+
 @media print {
   *,
   *::before,
@@ -265,8 +303,7 @@ a {
   color: #007bff;
   text-decoration: none;
   background-color: transparent;
-  -webkit-text-decoration-skip: objects;
-}
+  }
 a:hover {
   color: #0056b3;
   text-decoration: none;
@@ -1571,7 +1608,7 @@ pre code {
   border-color: #80bdff;
   outline: none;
 }
-.form-control::placeholder, .dataTables_filter input::placeholder {
+.form-control::placeholder, .dataTables_filter input:-moz-placeholder {
   color: #868e96;
   opacity: 1;
 }
@@ -2940,7 +2977,6 @@ tbody.collapse.show {
   background-size: 8px 10px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 2px;
-  appearance: none;
 }
 .custom-select:focus {
   border-color: #80bdff;
@@ -45629,7 +45665,7 @@ a.hover-white-8:hover, a.hover-white-8:focus {
 }
 
 .tx-spacing-7 {
-  letter-spacign: 3.5px;
+  letter-spacing: 3.5px;
 }
 
 .tx-spacing-8 {
