@@ -7,10 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using WebTemp.Models;
+using WebTemp.Controllers.DataAccess;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace WebTempp
 {
     public partial class Startup
     {
+        public static Func<UserManager<AppUser, Guid>> UserManagerFactory { get; private set; } = Create;
         public static void ConfigureAuth(IAppBuilder app)
         {
             var option = new CookieAuthenticationOptions()
@@ -39,6 +44,33 @@ namespace WebTempp
             app.UseGoogleAuthentication(
                clientId: "926314037407-6fo0c4de1meka6nbroa2n362n7ddnm5m.apps.googleusercontent.com",
                clientSecret: "EL2rOz7-wqOu1rc1BEpvgG3y");
+        }
+        public static UserManager<AppUser, Guid> Create()
+        {
+            var dbContext = new AppDbContext();
+            var store = new UserStore<AppUser, AppRole, Guid, AppUserLogin, AppUserRole, AppUserClaim>(dbContext);
+            var usermanager = new UserManager<AppUser, Guid>(store);
+
+            usermanager.UserValidator = new UserValidator<AppUser,Guid>(usermanager)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = false,
+            };
+            usermanager.PasswordValidator = new PasswordValidator()
+            {
+                RequiredLength = 4,
+                RequireDigit = false,
+                RequireUppercase = false
+            };
+            return usermanager;
+        }
+        public static Func<RoleManager<AppRole, Guid>> RoleManagerFactory { get; private set; } = RoleCreate;
+        public static  RoleManager<AppRole, Guid> RoleCreate()
+        {
+            var dbContext = new AppDbContext();
+            var store = new RoleStore<AppRole, Guid,  AppUserRole>(dbContext);
+            var rolemanager = new RoleManager<AppRole, Guid>(store);
+            return rolemanager;
         }
     }
 }
